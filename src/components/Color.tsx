@@ -10,11 +10,12 @@ const StyledColor = styled.button<{ selected: boolean; name: string }>`
   border-radius: 50%;
   border: 1px solid #e0e0e5;
   margin-right: 1.5rem;
+  margin-bottom: 1rem;
   cursor: pointer;
   outline: none;
 
   &:focus {
-    border: 1px solid #3579f6;
+    border: 4px solid #e0e0e5;
   }
 
   ${({ selected }) =>

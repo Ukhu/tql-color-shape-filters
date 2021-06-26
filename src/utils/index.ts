@@ -1,4 +1,38 @@
-export const getItemsDescription = (
+import { Item } from "../types";
+
+export const getColorFilters = (items: Item[]) => {
+  const availableColors: { [key: string]: boolean } = {};
+  const filters = [];
+
+  for (let item of items) {
+    if (availableColors[item.color]) {
+      continue;
+    } else {
+      availableColors[item.color] = true;
+      filters.push(item.color);
+    }
+  }
+
+  return filters;
+};
+
+export const getShapeFilters = (items: Item[]) => {
+  const availableShapes: { [key: string]: boolean } = {};
+  const filters = [];
+
+  for (let item of items) {
+    if (availableShapes[item.shape]) {
+      continue;
+    } else {
+      availableShapes[item.shape] = true;
+      filters.push(item.shape);
+    }
+  }
+
+  return filters;
+};
+
+export const getGridTitle = (
   colorsLength: number,
   shapesLength: number,
   selectedColors: string[],

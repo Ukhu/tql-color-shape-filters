@@ -14,11 +14,12 @@ const StyledShape = styled.button<{ selected: boolean }>`
   border: 1px solid #e0e0e5;
   border-radius: 12rem;
   margin-right: 1.5rem;
+  margin-bottom: 1rem;
   cursor: pointer;
   outline: none;
 
   &:focus {
-    border: 2px solid #c9d8fb;
+    border: 4px solid #c9d8fb;
   }
 
   ${({ selected }) =>

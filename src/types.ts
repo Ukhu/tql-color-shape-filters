@@ -10,7 +10,9 @@ export interface IColorProps {
   selected?: boolean;
 }
 
-export interface IItemProps {
+export interface Item {
   shape: string;
   color: string;
 }
+
+export interface IItemProps extends Item {}

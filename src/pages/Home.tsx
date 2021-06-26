@@ -1,4 +1,7 @@
-import React, { useState } from "react";
+import React from "react";
+
+import ItemContext from "../contexts/ItemContext";
+import { getColorFilters, getGridTitle, getShapeFilters } from "../utils";
 
 import Header from "../components/Header";
 import Shape from "../components/Shape";
@@ -7,7 +10,6 @@ import FilterGroup from "../components/FilterGroup";
 import styled from "styled-components";
 import Item from "../components/Item";
 import ItemGrid from "../components/ItemGrid";
-import { getItemsDescription } from "../utils";
 
 const StyledSection = styled.section`
   margin: 0 12rem;
@@ -24,12 +26,19 @@ const ItemAmount = styled.span`
   font-weight: normal;
 `;
 
-const COLORS = ["red", "blue", "green", "yellow", "lightblue", "grey"];
-const SHAPES = ["oval", "round", "triangle", "square", "rectangle"];
-
 const Home = () => {
-  const [selectedColors, setSelectedColors] = useState<string[]>([]);
-  const [selectedShapes, setSelectedShapes] = useState<string[]>([]);
+  const items = React.useContext(ItemContext);
+
+  const [selectedColors, setSelectedColors] = React.useState<string[]>([]);
+  const [selectedShapes, setSelectedShapes] = React.useState<string[]>([]);
+
+  const COLORS = React.useMemo(() => getColorFilters(items), [items]);
+  const SHAPES = React.useMemo(() => getShapeFilters(items), [items]);
+
+  React.useEffect(() => {
+    setSelectedColors([...COLORS]);
+    setSelectedShapes([...SHAPES]);
+  }, [COLORS, SHAPES]);
 
   const handleColorSelect = (color: string) => {
     const isSelected = selectedColors.includes(color);
@@ -38,7 +47,9 @@ const Home = () => {
       const filteredColors = selectedColors.filter(
         (existingColor) => existingColor !== color
       );
-      setSelectedColors(filteredColors);
+      setSelectedColors(
+        filteredColors.length === 0 ? [...COLORS] : filteredColors
+      );
     } else {
       setSelectedColors((prevColors) => [...prevColors, color]);
     }
@@ -51,13 +62,15 @@ const Home = () => {
       const filteredShapes = selectedShapes.filter(
         (existingShape) => existingShape !== shape
       );
-      setSelectedShapes(filteredShapes);
+      setSelectedShapes(
+        filteredShapes.length === 0 ? [...SHAPES] : filteredShapes
+      );
     } else {
       setSelectedShapes((prevShapes) => [...prevShapes, shape]);
     }
   };
 
-  const itemDescription = getItemsDescription(
+  const gridTitle = getGridTitle(
     COLORS.length,
     SHAPES.length,
     selectedColors,
@@ -75,6 +88,7 @@ const Home = () => {
             const isSelected = selectedShapes.includes(shape);
             return (
               <Shape
+                key={shape}
                 name={shape}
                 selected={isSelected}
                 handleClick={() => handleShapeSelect(shape)}
@@ -88,6 +102,7 @@ const Home = () => {
             const isSelected = selectedColors.includes(color);
             return (
               <Color
+                key={color}
                 name={color}
                 selected={isSelected}
                 handleClick={() => handleColorSelect(color)}
@@ -99,17 +114,25 @@ const Home = () => {
 
       <StyledSection>
         <SectionHeading>
-          {itemDescription}. &nbsp;
+          {gridTitle}. &nbsp;
           <ItemAmount>
             ({selectedColors.length * selectedShapes.length})
           </ItemAmount>
         </SectionHeading>
         <ItemGrid>
-          {selectedShapes.map((shape) => {
-            return selectedColors.map((color) => (
-              <Item color={color} shape={shape} />
-            ));
-          })}
+          {items
+            .filter(
+              (item) =>
+                selectedColors.includes(item.color) &&
+                selectedShapes.includes(item.shape)
+            )
+            .map((item) => (
+              <Item
+                key={item.color + item.shape}
+                color={item.color}
+                shape={item.shape}
+              />
+            ))}
         </ItemGrid>
       </StyledSection>
     </div>

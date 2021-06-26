@@ -1,0 +1,124 @@
+{
+  "items": [
+    {
+      "color": "red",
+      "shape": "oval"
+    },
+    {
+      "color": "red",
+      "shape": "round"
+    },
+    {
+      "color": "red",
+      "shape": "triangle"
+    },
+    {
+      "color": "red",
+      "shape": "square"
+    },
+    {
+      "color": "red",
+      "shape": "rectangle"
+    },
+    {
+      "color": "blue",
+      "shape": "oval"
+    },
+    {
+      "color": "blue",
+      "shape": "round"
+    },
+    {
+      "color": "blue",
+      "shape": "triangle"
+    },
+    {
+      "color": "blue",
+      "shape": "square"
+    },
+    {
+      "color": "blue",
+      "shape": "rectangle"
+    },
+    {
+      "color": "green",
+      "shape": "oval"
+    },
+    {
+      "color": "green",
+      "shape": "round"
+    },
+    {
+      "color": "green",
+      "shape": "triangle"
+    },
+    {
+      "color": "green",
+      "shape": "square"
+    },
+    {
+      "color": "green",
+      "shape": "rectangle"
+    },
+    {
+      "color": "yellow",
+      "shape": "oval"
+    },
+    {
+      "color": "yellow",
+      "shape": "round"
+    },
+    {
+      "color": "yellow",
+      "shape": "triangle"
+    },
+    {
+      "color": "yellow",
+      "shape": "square"
+    },
+    {
+      "color": "yellow",
+      "shape": "rectangle"
+    },
+    {
+      "color": "lightblue",
+      "shape": "oval"
+    },
+    {
+      "color": "lightblue",
+      "shape": "round"
+    },
+    {
+      "color": "lightblue",
+      "shape": "triangle"
+    },
+    {
+      "color": "lightblue",
+      "shape": "square"
+    },
+    {
+      "color": "lightblue",
+      "shape": "rectangle"
+    },
+    {
+      "color": "grey",
+      "shape": "oval"
+    },
+    {
+      "color": "grey",
+      "shape": "round"
+    },
+    {
+      "color": "grey",
+      "shape": "triangle"
+    },
+    {
+      "color": "grey",
+      "shape": "square"
+    },
+    {
+      "color": "grey",
+      "shape": "rectangle"
+    }
+  ]
+}
