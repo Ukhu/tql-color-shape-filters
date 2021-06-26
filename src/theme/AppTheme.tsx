@@ -1,7 +1,7 @@
 const AppTheme = {
   breakpoints: {
-    mobile: "375px",
-    tablet: "640px",
+    mobile: "640px",
+    tablet: "1024px",
   },
 };
 

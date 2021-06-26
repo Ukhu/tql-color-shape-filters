@@ -14,14 +14,14 @@ const StyledHeader = styled.header`
   box-shadow: 0px 5px 5px #f0f1f6;
 
   ${({ theme }) => css`
-    @media screen and (max-width: ${theme.breakpoints.mobile}) {
-      padding: 0 2rem;
+    @media screen and (max-width: ${theme.breakpoints.tablet}) {
+      padding: 0 3rem;
     }
   `}
 
   ${({ theme }) => css`
-    @media screen and (max-width: ${theme.breakpoints.tablet}) {
-      padding: 0 3rem;
+    @media screen and (max-width: ${theme.breakpoints.mobile}) {
+      padding: 0 2rem;
     }
   `}
 `;

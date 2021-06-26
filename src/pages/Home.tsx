@@ -1,4 +1,5 @@
 import React from "react";
+import styled, { css } from "styled-components";
 
 import AppContext from "../contexts/AppContext";
 import { getColorFilters, getGridTitle, getShapeFilters } from "../utils";
@@ -7,13 +8,25 @@ import Header from "../components/Header";
 import Shape from "../components/Shape";
 import Color from "../components/Color";
 import FilterGroup from "../components/FilterGroup";
-import styled from "styled-components";
 import Item from "../components/Item";
 import ItemGrid from "../components/ItemGrid";
 
 const StyledSection = styled.section`
   margin: 0 12rem;
   margin-bottom: 4rem;
+
+  ${({ theme }) => css`
+    @media screen and (max-width: ${theme.breakpoints.tablet}) {
+      margin: 0 3rem;
+      margin-bottom: 2rem;
+    }
+  `}
+
+  ${({ theme }) => css`
+    @media screen and (max-width: ${theme.breakpoints.mobile}) {
+      margin: 0 2rem;
+    }
+  `}
 `;
 
 const SectionHeading = styled.h3`
