@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 
 import Header from "../components/Header";
 import Shape from "../components/Shape";
@@ -7,6 +7,7 @@ import FilterGroup from "../components/FilterGroup";
 import styled from "styled-components";
 import Item from "../components/Item";
 import ItemGrid from "../components/ItemGrid";
+import { getItemsDescription } from "../utils";
 
 const StyledSection = styled.section`
   margin: 0 12rem;
@@ -23,7 +24,46 @@ const ItemAmount = styled.span`
   font-weight: normal;
 `;
 
+const COLORS = ["red", "blue", "green", "yellow", "lightblue", "grey"];
+const SHAPES = ["oval", "round", "triangle", "square", "rectangle"];
+
 const Home = () => {
+  const [selectedColors, setSelectedColors] = useState<string[]>([]);
+  const [selectedShapes, setSelectedShapes] = useState<string[]>([]);
+
+  const handleColorSelect = (color: string) => {
+    const isSelected = selectedColors.includes(color);
+
+    if (isSelected) {
+      const filteredColors = selectedColors.filter(
+        (existingColor) => existingColor !== color
+      );
+      setSelectedColors(filteredColors);
+    } else {
+      setSelectedColors((prevColors) => [...prevColors, color]);
+    }
+  };
+
+  const handleShapeSelect = (shape: string) => {
+    const isSelected = selectedShapes.includes(shape);
+
+    if (isSelected) {
+      const filteredShapes = selectedShapes.filter(
+        (existingShape) => existingShape !== shape
+      );
+      setSelectedShapes(filteredShapes);
+    } else {
+      setSelectedShapes((prevShapes) => [...prevShapes, shape]);
+    }
+  };
+
+  const itemDescription = getItemsDescription(
+    COLORS.length,
+    SHAPES.length,
+    selectedColors,
+    selectedShapes
+  );
+
   return (
     <div>
       <Header />
@@ -31,29 +71,45 @@ const Home = () => {
       <StyledSection>
         <SectionHeading>Filters</SectionHeading>
         <FilterGroup category="Shapes">
-          <Shape name="Oval" selected />
-          <Shape name="Round" />
-          <Shape name="Triangle" />
-          <Shape name="Square" selected />
-          <Shape name="Rectangle" />
+          {SHAPES.map((shape) => {
+            const isSelected = selectedShapes.includes(shape);
+            return (
+              <Shape
+                name={shape}
+                selected={isSelected}
+                handleClick={() => handleShapeSelect(shape)}
+              />
+            );
+          })}
         </FilterGroup>
 
         <FilterGroup category="Colors">
-          <Color name="red" selected />
-          <Color name="blue" />
-          <Color name="green" />
-          <Color name="yellow" />
-          <Color name="lightblue" selected />
-          <Color name="grey" />
+          {COLORS.map((color) => {
+            const isSelected = selectedColors.includes(color);
+            return (
+              <Color
+                name={color}
+                selected={isSelected}
+                handleClick={() => handleColorSelect(color)}
+              />
+            );
+          })}
         </FilterGroup>
       </StyledSection>
 
       <StyledSection>
         <SectionHeading>
-          All items. &nbsp;<ItemAmount>(6)</ItemAmount>
+          {itemDescription}. &nbsp;
+          <ItemAmount>
+            ({selectedColors.length * selectedShapes.length})
+          </ItemAmount>
         </SectionHeading>
         <ItemGrid>
-          <Item color="red" shape="oval" />
+          {selectedShapes.map((shape) => {
+            return selectedColors.map((color) => (
+              <Item color={color} shape={shape} />
+            ));
+          })}
         </ItemGrid>
       </StyledSection>
     </div>
