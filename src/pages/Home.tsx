@@ -5,9 +5,22 @@ import Shape from "../components/Shape";
 import Color from "../components/Color";
 import FilterGroup from "../components/FilterGroup";
 import styled from "styled-components";
+import Item from "../components/Item";
+import ItemGrid from "../components/ItemGrid";
 
-const FiltersSection = styled.section`
+const StyledSection = styled.section`
   margin: 0 12rem;
+  margin-bottom: 4rem;
+`;
+
+const SectionHeading = styled.h3`
+  display: flex;
+  align-items: center;
+`;
+
+const ItemAmount = styled.span`
+  font-size: 1rem;
+  font-weight: normal;
 `;
 
 const Home = () => {
@@ -15,8 +28,8 @@ const Home = () => {
     <div>
       <Header />
 
-      <FiltersSection>
-        <h2>Filters</h2>
+      <StyledSection>
+        <SectionHeading>Filters</SectionHeading>
         <FilterGroup category="Shapes">
           <Shape name="Oval" selected />
           <Shape name="Round" />
@@ -29,10 +42,20 @@ const Home = () => {
           <Color name="red" selected />
           <Color name="blue" />
           <Color name="green" />
+          <Color name="yellow" />
           <Color name="lightblue" selected />
           <Color name="grey" />
         </FilterGroup>
-      </FiltersSection>
+      </StyledSection>
+
+      <StyledSection>
+        <SectionHeading>
+          All items. &nbsp;<ItemAmount>(6)</ItemAmount>
+        </SectionHeading>
+        <ItemGrid>
+          <Item color="red" shape="oval" />
+        </ItemGrid>
+      </StyledSection>
     </div>
   );
 };

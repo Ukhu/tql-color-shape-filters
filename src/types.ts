@@ -7,3 +7,8 @@ export interface IColorProps {
   name: string;
   selected?: boolean;
 }
+
+export interface IItemProps {
+  shape: string;
+  color: string;
+}

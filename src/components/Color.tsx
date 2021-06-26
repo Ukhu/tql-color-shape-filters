@@ -7,8 +7,8 @@ const StyledColor = styled.div<{ selected: boolean; name: string }>`
   height: 3rem;
   width: 3rem;
   background-color: ${({ name }) => name};
-  border: 1px solid ${({ name }) => name};
   border-radius: 50%;
+  border: 1px solid #e0e0e5;
   margin-right: 1.5rem;
 
   ${({ selected }) =>
