@@ -11,6 +11,7 @@ const Rectangle = ({ color }: IRectangleProps) => {
       height="160"
       version="1.1"
       xmlns="http://www.w3.org/2000/svg"
+      data-testid={`rectangle-${color}`}
     >
       <rect x={30} y={50} width={100} height={60} fill={color} />
     </svg>

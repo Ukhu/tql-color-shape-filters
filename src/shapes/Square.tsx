@@ -11,6 +11,7 @@ const Square = ({ color }: ISquareProps) => {
       height="160"
       version="1.1"
       xmlns="http://www.w3.org/2000/svg"
+      data-testid={`square-${color}`}
     >
       <rect x={40} y={40} width={80} height={80} fill={color} />
     </svg>

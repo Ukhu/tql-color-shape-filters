@@ -20,7 +20,11 @@ const StyledItem = styled.div`
 `;
 
 const Item = ({ shape, color }: IItemProps) => {
-  return <StyledItem>{getItemShape(shape, color)}</StyledItem>;
+  return (
+    <StyledItem data-testid="shapeItem">
+      {getItemShape(shape, color)}
+    </StyledItem>
+  );
 };
 
 const getItemShape = (shape: string, color: string) => {

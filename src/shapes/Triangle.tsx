@@ -11,6 +11,7 @@ const Triangle = ({ color }: ITriangleProps) => {
       height="160"
       version="1.1"
       xmlns="http://www.w3.org/2000/svg"
+      data-testid={`triangle-${color}`}
     >
       <polygon points="30, 120 80, 30 130, 120" fill={color} />
     </svg>
