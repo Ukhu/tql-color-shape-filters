@@ -1,13 +1,26 @@
 import React from "react";
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Redirect,
+} from "react-router-dom";
 
-import { ItemProvider } from "./contexts/ItemContext";
+import { AppProvider } from "./contexts/AppContext";
+import { IItem } from "./types";
 
 import Home from "./pages/Home";
+import Login from "./pages/Login";
+import PrivateRoute from "./routes/PrivateRoute";
 
 function App() {
-  const [items, setItems] = React.useState<{ color: string; shape: string }[]>(
-    []
-  );
+  const [items, setItems] = React.useState<IItem[]>([]);
+  const [isLoggedIn, setIsLoggedIn] = React.useState(false);
+
+  React.useEffect(() => {
+    const loginState = localStorage.getItem("loggedIn");
+    setIsLoggedIn(loginState === "true");
+  }, [isLoggedIn]);
 
   React.useEffect(() => {
     const fetchItems = async () => {
@@ -18,12 +31,20 @@ function App() {
     fetchItems();
   }, []);
 
+  const changeLoginState = () => {
+    setIsLoggedIn((prevState) => !prevState);
+  };
+
   return (
-    <ItemProvider value={items}>
-      <div>
-        <Home />
-      </div>
-    </ItemProvider>
+    <AppProvider value={{ items, isLoggedIn, changeLoginState }}>
+      <Router>
+        <Switch>
+          <Route exact path="/login" component={Login} />
+          <PrivateRoute path="/shapes" component={Home} />
+          <Route render={() => <Redirect to="/shapes" />} />
+        </Switch>
+      </Router>
+    </AppProvider>
   );
 }
 

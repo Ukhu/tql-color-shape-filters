@@ -1,6 +1,6 @@
-import { Item } from "../types";
+import { IItem } from "../types";
 
-export const getColorFilters = (items: Item[]) => {
+export const getColorFilters = (items: IItem[]) => {
   const availableColors: { [key: string]: boolean } = {};
   const filters = [];
 
@@ -16,7 +16,7 @@ export const getColorFilters = (items: Item[]) => {
   return filters;
 };
 
-export const getShapeFilters = (items: Item[]) => {
+export const getShapeFilters = (items: IItem[]) => {
   const availableShapes: { [key: string]: boolean } = {};
   const filters = [];
 

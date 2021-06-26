@@ -1,6 +1,6 @@
 import React from "react";
 
-import ItemContext from "../contexts/ItemContext";
+import AppContext from "../contexts/AppContext";
 import { getColorFilters, getGridTitle, getShapeFilters } from "../utils";
 
 import Header from "../components/Header";
@@ -27,7 +27,7 @@ const ItemAmount = styled.span`
 `;
 
 const Home = () => {
-  const items = React.useContext(ItemContext);
+  const items = React.useContext(AppContext).items;
 
   const [selectedColors, setSelectedColors] = React.useState<string[]>([]);
   const [selectedShapes, setSelectedShapes] = React.useState<string[]>([]);
@@ -79,7 +79,7 @@ const Home = () => {
 
   return (
     <div>
-      <Header />
+      <Header loggedIn />
 
       <StyledSection>
         <SectionHeading>Filters</SectionHeading>

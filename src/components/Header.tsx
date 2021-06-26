@@ -1,6 +1,8 @@
 import React from "react";
 import styled from "styled-components";
 import { IoExitOutline } from "react-icons/io5";
+import { useHistory } from "react-router-dom";
+import AppContext from "../contexts/AppContext";
 
 const StyledHeader = styled.header`
   height: 5rem;
@@ -18,22 +20,41 @@ const Logo = styled.div`
   letter-spacing: 1px;
 `;
 
-const Logout = styled.div`
+const Logout = styled.button`
   width: 4.5rem;
   display: flex;
   justify-content: space-between;
   align-items: center;
   color: #ff6058;
+  cursor: pointer;
+  border: none;
+  background: transparent;
+  outline: none;
 `;
 
-const Header = () => {
+interface IHeaderProps {
+  loggedIn?: boolean;
+}
+
+const Header = ({ loggedIn }: IHeaderProps) => {
+  const logout = React.useContext(AppContext).changeLoginState;
+  const history = useHistory();
+
+  const handleLogout = () => {
+    localStorage.removeItem("loggedIn");
+    logout();
+    history.push("/");
+  };
+
   return (
     <StyledHeader>
       <Logo>Shapes</Logo>
-      <Logout>
-        Logout
-        <IoExitOutline />
-      </Logout>
+      {loggedIn && (
+        <Logout onClick={handleLogout}>
+          Logout
+          <IoExitOutline />
+        </Logout>
+      )}
     </StyledHeader>
   );
 };
