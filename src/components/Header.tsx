@@ -1,5 +1,5 @@
 import React from "react";
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 import { IoExitOutline } from "react-icons/io5";
 import { useHistory } from "react-router-dom";
 import AppContext from "../contexts/AppContext";
@@ -12,12 +12,30 @@ const StyledHeader = styled.header`
   justify-content: space-between;
   align-items: center;
   box-shadow: 0px 5px 5px #f0f1f6;
+
+  ${({ theme }) => css`
+    @media screen and (max-width: ${theme.breakpoints.mobile}) {
+      padding: 0 2rem;
+    }
+  `}
+
+  ${({ theme }) => css`
+    @media screen and (max-width: ${theme.breakpoints.tablet}) {
+      padding: 0 3rem;
+    }
+  `}
 `;
 
 const Logo = styled.div`
   text-transform: uppercase;
   font-size: 2rem;
   letter-spacing: 1px;
+
+  ${({ theme }) => css`
+    @media screen and (max-width: ${theme.breakpoints.mobile}) {
+      font-size: 1.5rem;
+    }
+  `}
 `;
 
 const Logout = styled.button`

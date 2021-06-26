@@ -1,7 +1,7 @@
 import React from "react";
 import { useContext } from "react";
 import { Redirect, useHistory } from "react-router-dom";
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 import Header from "../components/Header";
 import AppContext from "../contexts/AppContext";
 
@@ -11,6 +11,22 @@ const LoginPageTitle = styled.h1`
   margin-bottom: 2rem;
   text-align: center;
   text-transform: uppercase;
+
+  ${({ theme }) => css`
+    @media screen and (max-width: ${theme.breakpoints.tablet}) {
+      margin: 0 2rem;
+      margin-top: 3rem;
+      font-size: 1.4rem;
+    }
+  `}
+
+  ${({ theme }) => css`
+    @media screen and (max-width: ${theme.breakpoints.mobile}) {
+      margin: 0 1rem;
+      margin-top: 2rem;
+      font-size: 1.2rem;
+    }
+  `}
 `;
 
 const LoginForm = styled.form`
@@ -18,6 +34,21 @@ const LoginForm = styled.form`
   margin-top: 3rem;
   display: flex;
   flex-direction: column;
+
+  ${({ theme }) => css`
+    @media screen and (max-width: ${theme.breakpoints.tablet}) {
+      margin: 0 2rem;
+      margin-top: 2rem;
+    }
+  `}
+
+  ${({ theme }) => css`
+    @media screen and (max-width: ${theme.breakpoints.mobile}) {
+      margin: 0 1rem;
+      margin-top: 1rem;
+      font-size: 1.2rem;
+    }
+  `}
 `;
 
 const LoginFormTitle = styled.h2`
@@ -29,6 +60,12 @@ const LoginFormLabel = styled.label`
   width: 20rem;
   margin: 0 auto;
   margin-bottom: 1rem;
+
+  ${({ theme }) => css`
+    @media screen and (max-width: ${theme.breakpoints.tablet}) {
+      width: 15rem;
+    }
+  `}
 `;
 
 const LoginFormInput = styled.input`
@@ -40,6 +77,12 @@ const LoginFormInput = styled.input`
   margin-bottom: 2rem;
   border-radius: 4px;
   border: 1px solid #e0e0e5;
+
+  ${({ theme }) => css`
+    @media screen and (max-width: ${theme.breakpoints.tablet}) {
+      width: 15rem;
+    }
+  `}
 `;
 
 const LoginFormButton = styled.button`
@@ -53,6 +96,12 @@ const LoginFormButton = styled.button`
   border: none;
   cursor: pointer;
   outline: none;
+
+  ${({ theme }) => css`
+    @media screen and (max-width: ${theme.breakpoints.tablet}) {
+      width: 15rem;
+    }
+  `}
 `;
 
 interface ICredentials {
