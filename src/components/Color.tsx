@@ -9,16 +9,17 @@ const StyledColor = styled.div<{ selected: boolean; name: string }>`
   background-color: ${({ name }) => name};
   border: 1px solid ${({ name }) => name};
   border-radius: 50%;
+  margin-right: 1.5rem;
 
   ${({ selected }) =>
     selected &&
     css`
-      background-color: #dee8fb;
-      border: 1px solid #3579f6;
+      border: 2px solid #3579f6;
+      box-shadow: 1px 1px 5px #3579f6, -1px -1px 5px #3579f6;
     `}
 `;
 
-const Color = ({ name, selected }: IColorProps) => {
+const Color = ({ name, selected = false }: IColorProps) => {
   return <StyledColor selected={selected} name={name} />;
 };
 
